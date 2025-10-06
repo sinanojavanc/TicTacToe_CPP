@@ -64,6 +64,16 @@ int CheckWhoIsWinner(){
 			return 1;	
 		else
 			return 2;
+	if (myarray[1][1] == myarray[0][1] && myarray[1][1] == myarray[2][1] && myarray[1][1] != 0)
+		if (myarray[1][1] == 1)
+			return 1;	
+		else
+			return 2;
+	if (myarray[1][1] == myarray[1][0] && myarray[1][1] == myarray[1][2] && myarray[1][1] != 0)
+		if (myarray[1][1] == 1)
+			return 1;	
+		else
+			return 2;
 	return 0;
 }
 
@@ -109,5 +119,3 @@ int main() {
 
     	return 0;
 }
-
-
