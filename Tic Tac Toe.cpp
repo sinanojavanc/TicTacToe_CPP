@@ -56,8 +56,8 @@ int CheckWinner() {
 int main() {
     	while (true) {
     		system("cls");
-        	ViewTable(CheckWhoIsWinner());
-        	if (CheckWhoIsWinner() != 0)
+        	ViewTable(CheckWinner());
+        	if (CheckWinner() != 0)
 			break;
         	int pos;
         	
