@@ -33,48 +33,24 @@ void ViewTable(int winer) {
     	}
 }
 
-int CheckWhoIsWinner(){
-	if (myarray[0][0] == myarray[1][1] && myarray[0][0] == myarray[2][2] && myarray[0][0] != 0)
-		if (myarray[0][0] == 1)
-			return 1;	
-		else
-			return 2;
-	if (myarray[2][0] == myarray[1][1] && myarray[1][1] == myarray[0][2] && myarray[1][1] != 0)
-		if (myarray[1][1] == 1)
-			return 1;	
-		else
-			return 2;
-	if (myarray[0][0] == myarray[1][0] && myarray[0][0] == myarray[2][0] && myarray[0][0] != 0)
-		if (myarray[0][0] == 1)
-			return 1;	
-		else
-			return 2;
-	if (myarray[0][0] == myarray[0][1] && myarray[0][0] == myarray[0][2] && myarray[0][0] != 0)
-		if (myarray[0][0] == 1)
-			return 1;	
-		else
-			return 2;
-	if (myarray[2][2] == myarray[1][2] && myarray[2][2] == myarray[0][2] && myarray[2][2] != 0)
-		if (myarray[2][2] == 1)
-			return 1;	
-		else
-			return 2;
-	if (myarray[2][2] == myarray[2][1] && myarray[2][2] == myarray[2][0] && myarray[2][2] != 0)
-		if (myarray[2][2] == 1)
-			return 1;	
-		else
-			return 2;
-	if (myarray[1][1] == myarray[0][1] && myarray[1][1] == myarray[2][1] && myarray[1][1] != 0)
-		if (myarray[1][1] == 1)
-			return 1;	
-		else
-			return 2;
-	if (myarray[1][1] == myarray[1][0] && myarray[1][1] == myarray[1][2] && myarray[1][1] != 0)
-		if (myarray[1][1] == 1)
-			return 1;	
-		else
-			return 2;
-	return 0;
+int CheckWinner() {
+	   	//   check Rows
+    	for (int y = 0; y < 3; y++)
+        	if (myarray[0][y] == myarray[1][y] && myarray[1][y] == myarray[2][y] && myarray[0][y] != 0)
+            	return myarray[0][y];
+
+    		//	check Columns
+    	for (int x = 0; x < 3; x++)
+        	if (myarray[x][0] == myarray[x][1] && myarray[x][1] == myarray[x][2] && myarray[x][0] != 0)
+            	return myarray[x][0];
+
+  		//	check Qatars
+    	if (myarray[0][0] == myarray[1][1] && myarray[1][1] == myarray[2][2] && myarray[0][0] != 0)
+        	return myarray[0][0];
+    	if (myarray[2][0] == myarray[1][1] && myarray[1][1] == myarray[0][2] && myarray[1][1] != 0)
+        	return myarray[1][1];
+
+    return 0;
 }
 
 int main() {
