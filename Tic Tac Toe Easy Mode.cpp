@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 using namespace std;
 
 int myarray[3][3] = {0};
@@ -89,8 +90,22 @@ int CheckWinner() {
     return 0;
 }
 
-int AIplayer(){
-	//....
+int AIplayer() {
+   	static bool seeded = false;
+    	if (!seeded) {
+       	srand(time(0));
+       	seeded = true;
+    	}
+
+    	int pos;
+    	do {
+       	pos = std::rand() % 9; // generate random number 0 - 9
+        	int x = pos % 3;
+        	int y = pos / 3;
+        	if (myarray[x][y] == 0) {
+             	return pos + 1;
+        	}
+    	} while (true);
 }
 
 int main() {
@@ -112,28 +127,38 @@ int main() {
 			
         	
         	cout << (turn ? " X turn.\n" : " O turn.\n");
-        	
         	int pos;
-        	cout << "which block u wana take? (1-9): ";
-        	cin >> pos;
-        	if (pos < 1 || pos > 9) {
-            	cout << "Invalid choice!\n";
-            	system("pause");
-            	continue;
-        	}
-
-        	pos--; // make it 0–8
-        	int x = pos % 3;
-        	int y = pos / 3;
-
-        	if (myarray[x][y] != 0) {
-            	cout << "That block is already taken!\n";
-            	system("pause");
-            	continue;
-        	}
         	
-        	myarray[x][y] = turn ? 1 : 2;
-        	turn = !turn;
+        	if (!turn){
+        		pos = AIplayer();
+        		pos--; // make it 0–8
+	        	int x = pos % 3;
+	        	int y = pos / 3;
+		 	myarray[x][y] = 2;
+	        	turn = !turn;
+	        	continue;
+	 	}
+       	
+         	cout << "which block u wana take? (1-9): ";
+         	cin >> pos;
+         	if (pos < 1 || pos > 9) {
+             	cout << "Invalid choice!\n";
+             	system("pause");
+             	continue;
+         	}
+	  	pos--; // make it 0–8
+ 		int x = pos % 3;
+	    	int y = pos / 3;
+	        	
+	    	if (myarray[x][y] != 0) {
+	         	cout << "That block is already taken!\n";
+	         	system("pause");
+	         	continue;
+	    	}
+	    	myarray[x][y] = 1;
+	    	turn = !turn;
+	 	
+
     	}
     	return 0;
 }
